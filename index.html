@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Presto.it - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="page-home dark-theme">
+    <div class="bg-blur bg-blur-top"></div>
+    <div class="bg-blur bg-blur-bottom"></div>
+
+    <header class="hero container">
+      <div class="hero-layout reveal is-visible">
+        <div class="hero-copy">
+          <div class="brand-row">
+            <img
+              class="brand-logo"
+              src="media/logo.svg"
+              alt="Logo Presto.it"
+              onerror="this.src='media/logo.svg'"
+            />
+            <p class="badge">Presto.it</p>
+          </div>
+          <h1>Il tuo mercatino online semplice e veloce</h1>
+          <p class="subtitle">
+            Compra, vendi e cerca occasioni in un unico posto con un’esperienza
+            <span id="rotatingWord" class="rotating-word">smart</span>. Vai alla pagina annunci
+            per usare ricerca avanzata e filtri.
+          </p>
+          <div class="home-actions">
+            <a class="btn btn-secondary" href="annunci.html">Vai agli annunci</a>
+            <a class="btn btn-ghost" href="team.html">Il nostro team</a>
+          </div>
+        </div>
+      </div>
+
+      <section class="home-kpis reveal" aria-label="Indicatori principali">
+        <article class="kpi-card">
+          <span>Annunci online</span>
+          <strong id="kpiTotal" class="kpi-value" data-count="0">0</strong>
+        </article>
+        <article class="kpi-card">
+          <span>Categorie</span>
+          <strong id="kpiCategories" class="kpi-value" data-count="0">0</strong>
+        </article>
+        <article class="kpi-card">
+          <span>Ricerche al giorno</span>
+          <strong class="kpi-value" data-count="1200">0</strong>
+        </article>
+      </section>
+    </header>
+
+    <main class="container">
+      <section class="panel home-panel reveal">
+        <h2>Perché Presto.it</h2>
+        <ul>
+          <li>Ricerca istantanea per nome annuncio</li>
+          <li>Filtri per categoria, tipo e fascia prezzo</li>
+          <li>Interfaccia moderna e responsive</li>
+        </ul>
+      </section>
+
+      <section class="home-feature-grid reveal">
+        <article class="panel feature-card">
+          <h3>Ricerca avanzata</h3>
+          <p>Trova subito quello che ti serve con filtri veloci e risultati precisi.</p>
+        </article>
+        <article class="panel feature-card">
+          <h3>Esperienza premium</h3>
+          <p>Interfaccia moderna, dark elegante e micro-interazioni fluide su ogni pagina.</p>
+        </article>
+        <article class="panel feature-card">
+          <h3>Pronto a crescere</h3>
+          <p>Architettura modulare: aggiungi annunci, pagine e funzioni senza rifare tutto.</p>
+        </article>
+      </section>
+
+    </main>
+
+    <footer class="container site-footer">
+      <small>© <span id="year"></span> Presto.it</small>
+    </footer>
+
+    <script src="annunci-data.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

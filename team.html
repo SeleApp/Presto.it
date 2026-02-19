@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Presto.it - Team</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="dark-theme page-team">
+    <div class="bg-blur bg-blur-top"></div>
+    <div class="bg-blur bg-blur-bottom"></div>
+
+    <header class="hero container">
+      <div class="brand-row">
+        <img
+          class="brand-logo"
+          src="media/logo.svg"
+          alt="Logo Presto.it"
+          onerror="this.src='media/logo.svg'"
+        />
+        <p class="badge">Team Presto.it</p>
+      </div>
+      <h1>Le persone dietro il progetto</h1>
+      <p class="subtitle">
+        Un team piccolo e pratico: design, sviluppo e attenzione all’esperienza utente.
+      </p>
+      <div class="home-actions">
+        <a class="btn btn-ghost" href="index.html">← Home</a>
+        <a class="btn btn-secondary" href="annunci.html">Vai agli annunci</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="panel team-panel reveal is-visible">
+        <h2>Chi siamo</h2>
+        <div class="team-grid team-grid-large">
+          <article class="team-card team-card-modern" style="--delay: 0ms">
+            <div class="team-cover">
+              <img src="media/davide.svg" alt="Davide" />
+              <span class="team-status">Online</span>
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Davide</h3>
+              <p class="team-role">Frontend & UI</p>
+              <div class="team-skills">
+                <span>React</span>
+                <span>UX</span>
+                <span>Animations</span>
+              </div>
+            </div>
+          </article>
+          <article class="team-card team-card-modern" style="--delay: 70ms">
+            <div class="team-cover">
+              <img src="media/marco.svg" alt="Marco" />
+              <span class="team-status">Online</span>
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Marco</h3>
+              <p class="team-role">Backend & Data</p>
+              <div class="team-skills">
+                <span>Node</span>
+                <span>API</span>
+                <span>SQL</span>
+              </div>
+            </div>
+          </article>
+          <article class="team-card team-card-modern" style="--delay: 140ms">
+            <div class="team-cover">
+              <img src="media/matteo.svg" alt="Matteo" />
+              <span class="team-status">Online</span>
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Matteo</h3>
+              <p class="team-role">UX & Product</p>
+              <div class="team-skills">
+                <span>Wireframe</span>
+                <span>UI Kit</span>
+                <span>Branding</span>
+              </div>
+            </div>
+          </article>
+          <article class="team-card team-card-modern" style="--delay: 210ms">
+            <div class="team-cover">
+              <img src="media/nicola.svg" alt="Nicola" />
+              <span class="team-status">Online</span>
+            </div>
+            <div class="team-content">
+              <h3 class="team-name">Nicola</h3>
+              <p class="team-role">Testing & QA</p>
+              <div class="team-skills">
+                <span>QA</span>
+                <span>Automation</span>
+                <span>Debug</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container site-footer">
+      <small>© <span id="year"></span> Presto.it</small>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>

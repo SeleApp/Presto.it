@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+	<defs>
+		<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0%" stop-color="#93c5fd"/>
+			<stop offset="100%" stop-color="#e2e8f0"/>
+		</linearGradient>
+	</defs>
+	<rect width="800" height="420" rx="28" fill="url(#sky)"/>
+	<rect y="310" width="800" height="110" fill="#cbd5e1"/>
+	<g transform="translate(140 120)">
+		<rect x="0" y="70" width="170" height="140" fill="#f8fafc" stroke="#94a3b8"/>
+		<polygon points="-10,70 85,10 180,70" fill="#ef4444"/>
+		<rect x="220" y="35" width="180" height="175" fill="#f1f5f9" stroke="#94a3b8"/>
+		<polygon points="210,35 310,-20 410,35" fill="#b91c1c"/>
+		<rect x="60" y="125" width="40" height="85" fill="#94a3b8"/>
+		<rect x="290" y="125" width="52" height="85" fill="#94a3b8"/>
+	</g>
+	<text x="44" y="66" fill="#1e293b" font-size="44" font-family="Inter, Arial" font-weight="700">Immobili</text>
+</svg>

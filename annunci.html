@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Presto.it - Annunci</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="page-annunci dark-theme">
+    <div class="bg-blur bg-blur-top"></div>
+    <div class="bg-blur bg-blur-bottom"></div>
+
+    <header class="hero container">
+      <div class="brand-row">
+        <img
+          class="brand-logo"
+          src="media/logo.svg"
+          alt="Logo Presto.it"
+          onerror="this.src='media/logo.svg'"
+        />
+        <p class="badge">Mercatino online</p>
+      </div>
+      <h1>Trova o pubblica annunci in pochi click</h1>
+      <p class="subtitle">
+        Ricerca intelligente per categoria, tipo annuncio e fascia di prezzo.
+      </p>
+      <div class="home-actions">
+        <a class="btn btn-ghost" href="index.html">← Torna alla home</a>
+        <a class="btn btn-ghost" href="team.html">Team</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="panel filters-panel">
+        <div class="filters-grid">
+          <label class="field">
+            <span>Cerca</span>
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Es. Fiat, iPhone, Lampada..."
+            />
+          </label>
+
+          <label class="field">
+            <span>Categoria</span>
+            <select id="categoryFilter">
+              <option value="all">Tutte le categorie</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Tipo annuncio</span>
+            <select id="typeFilter">
+              <option value="all">Vendo + Cerco</option>
+              <option value="sell">Vendo</option>
+              <option value="search">Cerco</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Prezzo minimo (€)</span>
+            <input id="minPrice" type="number" min="0" step="0.01" placeholder="0" />
+          </label>
+
+          <label class="field">
+            <span>Prezzo massimo (€)</span>
+            <input id="maxPrice" type="number" min="0" step="0.01" placeholder="50000" />
+          </label>
+
+          <label class="field">
+            <span>Ordina per</span>
+            <select id="sortBy">
+              <option value="name-asc">Nome A-Z</option>
+              <option value="price-asc">Prezzo crescente</option>
+              <option value="price-desc">Prezzo decrescente</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="actions-row">
+          <button id="resetFilters" class="btn btn-secondary">Reset filtri</button>
+          <div id="resultsSummary" class="results-summary"></div>
+        </div>
+      </section>
+
+      <section class="stats-row" aria-label="Riepilogo annunci">
+        <article class="panel stat-card">
+          <span>Totali</span>
+          <strong id="statTotal">0</strong>
+        </article>
+        <article class="panel stat-card">
+          <span>Vendo</span>
+          <strong id="statSell">0</strong>
+        </article>
+        <article class="panel stat-card">
+          <span>Cerco</span>
+          <strong id="statSearch">0</strong>
+        </article>
+      </section>
+
+      <section class="listings-head">
+        <h2>Annunci disponibili</h2>
+      </section>
+
+      <section id="cardsContainer" class="cards-grid" aria-live="polite"></section>
+      <p id="emptyState" class="empty-state hidden">
+        Nessun annuncio trovato con i filtri selezionati.
+      </p>
+    </main>
+
+    <script src="annunci-data.js"></script>
+    <script src="annunci.js"></script>
+  </body>
+</html>
