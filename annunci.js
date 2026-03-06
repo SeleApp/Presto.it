@@ -31,6 +31,9 @@ fetch("./annunci.json")
     createCategoryFilters(data);
     showCards(data);
     bindEvents();
+  })
+  .catch(() => {
+    cardsWrapper.innerHTML = `<div class="col-12"><div class="empty-state">Errore nel caricamento degli annunci</div></div>`;
   });
 
 function setPriceRange(array) {
@@ -40,6 +43,29 @@ function setPriceRange(array) {
   priceValue.textContent = String(maxPrice);
 }
 
+function getSelectedCategory() {
+  const checkedButton = Array.from(radioButtons).find((button) => button.checked);
+  return checkedButton ? checkedButton.id : "all";
+}
+
+function updatePriceRangeByCategory() {
+  const selectedCategory = getSelectedCategory();
+  const filteredByCategory = selectedCategory === "all"
+    ? data
+    : data.filter((el) => el.category === selectedCategory);
+
+  if (filteredByCategory.length === 0) {
+    return;
+  }
+
+  const maxPrice = Math.ceil(Math.max(...filteredByCategory.map((el) => Number(el.price))));
+  const currentValue = Number(priceInput.value);
+
+  priceInput.max = String(maxPrice);
+  priceInput.value = String(Math.min(currentValue, maxPrice));
+  priceValue.textContent = priceInput.value;
+}
+
 function createCategoryFilters(array) {
   const categories = ["all", ...new Set(array.map((el) => el.category))];
 
@@ -47,7 +73,7 @@ function createCategoryFilters(array) {
 
   categories.forEach((category, index) => {
     const id = category;
-    const label = category === "all" ? "Tutte" : category;
+    const label = category === "all" ? "Tutte le categorie" : category;
 
     const wrapper = document.createElement("div");
     wrapper.classList.add("form-check", "mb-2");
@@ -60,7 +86,7 @@ function createCategoryFilters(array) {
     categoryWrapper.appendChild(wrapper);
   });
 
-  radioButtons = document.querySelectorAll(".form-check-input");
+  radioButtons = document.querySelectorAll("input[name='category']");
 }
 
 function showCards(array) {
@@ -75,10 +101,12 @@ function showCards(array) {
     const col = document.createElement("div");
     col.classList.add("col-12", "col-md-6", "col-xl-4");
 
+    const shortName = truncateWord(annuncio.name);
+
     col.innerHTML = `
       <article class="card announcement-card">
         <div class="card-body d-flex flex-column">
-          <h3 class="card-title h5">${annuncio.name}</h3>
+          <h3 class="card-title h5" title="${annuncio.name}">${shortName}</h3>
           <p class="mb-2"><span class="badge badge-category">${annuncio.category}</span></p>
           <p class="mb-3"><span class="badge badge-type">${annuncio.type}</span></p>
           <p class="mt-auto mb-0 price-tag">€ ${Number(annuncio.price).toFixed(2)}</p>
@@ -90,9 +118,16 @@ function showCards(array) {
   });
 }
 
+function truncateWord(text) {
+  if (text.length > 15) {
+    return `${text.split(" ")[0]}...`;
+  }
+
+  return text;
+}
+
 function filterByCategory(array) {
-  const checkedButton = Array.from(radioButtons).find((button) => button.checked);
-  const category = checkedButton ? checkedButton.id : "all";
+  const category = getSelectedCategory();
 
   const filtered = array.filter((annuncio) => {
     if (category === "all") {
@@ -127,6 +162,7 @@ function globalFilter() {
 function bindEvents() {
   radioButtons.forEach((button) => {
     button.addEventListener("click", () => {
+      updatePriceRangeByCategory();
       globalFilter();
     });
   });
@@ -147,8 +183,7 @@ function bindEvents() {
     }
 
     wordInput.value = "";
-    priceInput.value = priceInput.max;
-    priceValue.textContent = priceInput.max;
+    setPriceRange(data);
     globalFilter();
   });
 }

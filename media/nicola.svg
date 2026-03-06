@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="titleNicola descNicola">
+  <title id="titleNicola">Nicola</title>
+  <desc id="descNicola">Avatar stilizzato di Nicola</desc>
+  <defs>
+    <linearGradient id="bgN" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffe81f"/>
+      <stop offset="100%" stop-color="#fff7b0"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" fill="url(#bgN)"/>
+  <circle cx="120" cy="95" r="48" fill="#171717"/>
+  <rect x="45" y="150" width="150" height="70" rx="35" fill="#171717"/>
+  <text x="120" y="216" font-size="28" font-family="Lato, Arial, sans-serif" text-anchor="middle" fill="#ffe81f">NICOLA</text>
+</svg>

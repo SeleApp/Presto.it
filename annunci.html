@@ -14,7 +14,7 @@
     <nav id="navbar" class="navbar navbar-expand-lg bg-black fixed-top">
       <div class="container">
         <a class="navbar-brand" href="./index.html">
-          <img src="./media/logo.svg" alt="Logo Presto" class="logo-navbar" />
+          <img src="./media/logo.svg" alt="Logo Presto.it" class="logo-navbar" />
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Apri menu">
@@ -25,7 +25,7 @@
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link active" href="./annunci.html">Annunci</a></li>
-            <li class="nav-item"><a class="nav-link" href="./index.html#chi-siamo">Chi siamo</a></li>
+            <li class="nav-item"><a class="nav-link" href="./aboutUs.html">Chi siamo</a></li>
           </ul>
           <div class="logo-spacer"></div>
         </div>
@@ -34,8 +34,8 @@
 
     <header class="hero-annunci d-flex align-items-center">
       <div class="container text-center">
-        <h1 class="display-5 mb-2">Pagina degli annunci</h1>
-        <p class="mb-0">Filtra per categoria, prezzo e parola chiave.</p>
+        <h1 class="display-5 mb-2">Esplora gli annunci</h1>
+        <p class="mb-0">Consulta tutte le inserzioni disponibili e applica i filtri per trovare subito la soluzione piu adatta alle tue esigenze.</p>
       </div>
     </header>
 
@@ -43,27 +43,60 @@
       <section class="container mb-4">
         <div class="row g-4">
           <div class="col-12 col-lg-3">
-            <div class="filter-box h-100">
-              <h2 class="h5 mb-3">Categorie</h2>
-              <div id="categoryWrapper"></div>
+            <div class="filter-box filters-panel h-100">
+              <h2 class="h5 mb-3">Filtra per</h2>
+
+              <div class="accordion filters-accordion" id="filtersAccordion">
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="headingCategory">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="true" aria-controls="collapseCategory">
+                      Categoria
+                    </button>
+                  </h3>
+                  <div id="collapseCategory" class="accordion-collapse collapse show" aria-labelledby="headingCategory" data-bs-parent="#filtersAccordion">
+                    <div id="categoryWrapper" class="accordion-body"></div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="headingPrice">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice" aria-expanded="false" aria-controls="collapsePrice">
+                      Prezzo
+                    </button>
+                  </h3>
+                  <div id="collapsePrice" class="accordion-collapse collapse" aria-labelledby="headingPrice" data-bs-parent="#filtersAccordion">
+                    <div class="accordion-body">
+                      <label for="priceInput" class="form-label mb-1">Prezzo massimo: <span id="priceValue">100000</span> €</label>
+                      <input id="priceInput" type="range" class="form-range" min="0" max="100000" step="1" value="100000" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="headingWord">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWord" aria-expanded="false" aria-controls="collapseWord">
+                      Parola
+                    </button>
+                  </h3>
+                  <div id="collapseWord" class="accordion-collapse collapse" aria-labelledby="headingWord" data-bs-parent="#filtersAccordion">
+                    <div class="accordion-body">
+                      <label for="wordInput" class="form-label mb-1">Cerca un annuncio</label>
+                      <input id="wordInput" type="text" class="form-control" placeholder="Scrivi il nome..." />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-grid mt-3">
+                <button id="resetBtn" type="button" class="btn btn-yellow">Reset filtri</button>
+              </div>
             </div>
           </div>
 
           <div class="col-12 col-lg-9">
             <div class="filter-box mb-3">
-              <div class="row g-3 align-items-end">
-                <div class="col-12 col-md-5">
-                  <label for="wordInput" class="form-label mb-1">Cerca annuncio</label>
-                  <input id="wordInput" type="text" class="form-control" placeholder="Scrivi il nome..." />
-                </div>
-                <div class="col-12 col-md-5">
-                  <label for="priceInput" class="form-label mb-1">Prezzo massimo: <span id="priceValue">100000</span> €</label>
-                  <input id="priceInput" type="range" class="form-range" min="0" max="100000" step="1" value="100000" />
-                </div>
-                <div class="col-12 col-md-2 d-grid">
-                  <button id="resetBtn" class="btn btn-yellow">Reset</button>
-                </div>
-              </div>
+              <h2 class="h5 mb-1">Risultati</h2>
+              <p class="mb-0">I risultati si aggiornano in tempo reale combinando categoria, prezzo e parola chiave.</p>
             </div>
 
             <div id="cardsWrapper" class="row g-3"></div>
@@ -73,7 +106,7 @@
     </main>
 
     <footer class="py-4 bg-black text-center text-white">
-      <small>Presto.it - Progetto didattico</small>
+        <small>Presto.it - Trova e pubblica annunci in pochi click</small>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

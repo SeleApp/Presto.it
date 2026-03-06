@@ -101,10 +101,16 @@ body {
 
 .hero-home,
 .hero-annunci {
-  min-height: 50vh;
+  min-height: 100vh;
   background: linear-gradient(135deg, rgba(23, 23, 23, 0.93), rgba(23, 23, 23, 0.78));
   color: var(--white);
   border-bottom: 4px solid var(--yellow);
+}
+
+.floating-features {
+  margin-top: -120px;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-home .lead,
@@ -129,6 +135,37 @@ body {
 .card-custom {
   border: 2px solid var(--black);
   box-shadow: 8px 8px 0 var(--yellow);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card-custom:hover {
+  transform: scale(1.04);
+  box-shadow: 8px 8px 0 var(--red);
+}
+
+.stats-section {
+  color: var(--black);
+}
+
+.stats-image-panel {
+  min-height: 320px;
+  border: 2px solid var(--black);
+  box-shadow: 10px 10px 0 var(--yellow);
+  background: linear-gradient(160deg, #1b1b1b, #3a3a3a);
+}
+
+.stats-logo {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.stats-number {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--red);
+  margin-right: 0.4rem;
 }
 
 .filter-box {
@@ -136,6 +173,46 @@ body {
   border: 2px solid var(--black);
   padding: 1rem;
   box-shadow: 6px 6px 0 var(--yellow);
+}
+
+.filters-panel .h5 {
+  margin-bottom: 0.85rem;
+}
+
+.filters-accordion .accordion-item {
+  border: 0;
+  background-color: transparent;
+}
+
+.filters-accordion .accordion-button {
+  background-color: var(--black);
+  color: var(--yellow);
+  font-weight: 700;
+  box-shadow: none;
+}
+
+.filters-accordion .accordion-button:not(.collapsed) {
+  background-color: var(--yellow);
+  color: var(--black);
+  box-shadow: none;
+}
+
+.filters-accordion .accordion-button:focus {
+  box-shadow: none;
+}
+
+.filters-accordion .accordion-button::after {
+  filter: grayscale(1) brightness(2.2);
+}
+
+.filters-accordion .accordion-button:not(.collapsed)::after {
+  filter: grayscale(1) brightness(0.2);
+}
+
+.filters-accordion .accordion-body {
+  background-color: #fff;
+  border: 2px solid var(--black);
+  border-top: 0;
 }
 
 .form-check-input:checked {
@@ -184,6 +261,115 @@ body {
   background-color: #fff;
 }
 
+.team-circle {
+  width: 320px;
+  height: 320px;
+  border: 3px solid var(--yellow);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, rgba(255, 232, 31, 0.12) 0%, rgba(23, 23, 23, 0.9) 70%);
+}
+
+.circle-opener {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 2px solid var(--red);
+  background-color: var(--black);
+  color: var(--yellow);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.opener-icon {
+  display: inline-block;
+  transition: transform 0.4s ease;
+}
+
+.opener-icon.is-open {
+  transform: rotate(45deg);
+}
+
+.team-member-node {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--yellow);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.45s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.team-member-node:hover,
+.team-member-node.is-active {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(255, 232, 31, 0.35);
+}
+
+.team-flip-card {
+  width: 290px;
+  height: 390px;
+  perspective: 900px;
+}
+
+.team-flip-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.55s ease;
+  transform-style: preserve-3d;
+}
+
+.team-flip-card:hover .team-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.team-flip-front,
+.team-flip-back {
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--black);
+  border-radius: 18px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+}
+
+.team-flip-front {
+  background-color: #d7d7d7;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 8px 8px 0 var(--yellow);
+}
+
+.team-flip-back {
+  transform: rotateY(180deg);
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 8px 8px 0 var(--yellow);
+}
+
 @media (max-width: 991px) {
   body {
     padding-top: 110px;
@@ -206,5 +392,26 @@ body {
   .hero-home,
   .hero-annunci {
     min-height: 40vh;
+  }
+
+  .floating-features {
+    margin-top: 0;
+  }
+
+  .team-flip-card {
+    width: 260px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 575px) {
+  .team-circle {
+    width: 280px;
+    height: 280px;
+  }
+
+  .team-member-node {
+    width: 62px;
+    height: 62px;
   }
 }

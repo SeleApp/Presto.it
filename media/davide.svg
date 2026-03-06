@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="titleDavide descDavide">
+  <title id="titleDavide">Davide</title>
+  <desc id="descDavide">Avatar stilizzato di Davide</desc>
+  <defs>
+    <linearGradient id="bgD" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#202020"/>
+      <stop offset="100%" stop-color="#4c4c4c"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" fill="url(#bgD)"/>
+  <circle cx="120" cy="95" r="48" fill="#ffe81f"/>
+  <rect x="45" y="150" width="150" height="70" rx="35" fill="#ffe81f"/>
+  <text x="120" y="216" font-size="28" font-family="Lato, Arial, sans-serif" text-anchor="middle" fill="#171717">DAVIDE</text>
+</svg>
