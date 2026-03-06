@@ -1,121 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Presto.it - Annunci</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
-  <body class="page-annunci dark-theme">
-    <div class="bg-blur bg-blur-top"></div>
-    <div class="bg-blur bg-blur-bottom"></div>
+  <body>
+    <nav id="navbar" class="navbar navbar-expand-lg bg-black fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html">
+          <img src="./media/logo.svg" alt="Logo Presto" class="logo-navbar" />
+        </a>
 
-    <header class="hero container">
-      <div class="brand-row">
-        <img
-          class="brand-logo"
-          src="media/logo.svg"
-          alt="Logo Presto.it"
-          onerror="this.src='media/logo.svg'"
-        />
-        <p class="badge">Mercatino online</p>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Apri menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="./annunci.html">Annunci</a></li>
+            <li class="nav-item"><a class="nav-link" href="./index.html#chi-siamo">Chi siamo</a></li>
+          </ul>
+          <div class="logo-spacer"></div>
+        </div>
       </div>
-      <h1>Trova o pubblica annunci in pochi click</h1>
-      <p class="subtitle">
-        Ricerca intelligente per categoria, tipo annuncio e fascia di prezzo.
-      </p>
-      <div class="home-actions">
-        <a class="btn btn-ghost" href="index.html">← Torna alla home</a>
-        <a class="btn btn-ghost" href="team.html">Team</a>
+    </nav>
+
+    <header class="hero-annunci d-flex align-items-center">
+      <div class="container text-center">
+        <h1 class="display-5 mb-2">Pagina degli annunci</h1>
+        <p class="mb-0">Filtra per categoria, prezzo e parola chiave.</p>
       </div>
     </header>
 
-    <main class="container">
-      <section class="panel filters-panel">
-        <div class="filters-grid">
-          <label class="field">
-            <span>Cerca</span>
-            <input
-              id="searchInput"
-              type="text"
-              placeholder="Es. Fiat, iPhone, Lampada..."
-            />
-          </label>
+    <main class="py-5">
+      <section class="container mb-4">
+        <div class="row g-4">
+          <div class="col-12 col-lg-3">
+            <div class="filter-box h-100">
+              <h2 class="h5 mb-3">Categorie</h2>
+              <div id="categoryWrapper"></div>
+            </div>
+          </div>
 
-          <label class="field">
-            <span>Categoria</span>
-            <select id="categoryFilter">
-              <option value="all">Tutte le categorie</option>
-            </select>
-          </label>
+          <div class="col-12 col-lg-9">
+            <div class="filter-box mb-3">
+              <div class="row g-3 align-items-end">
+                <div class="col-12 col-md-5">
+                  <label for="wordInput" class="form-label mb-1">Cerca annuncio</label>
+                  <input id="wordInput" type="text" class="form-control" placeholder="Scrivi il nome..." />
+                </div>
+                <div class="col-12 col-md-5">
+                  <label for="priceInput" class="form-label mb-1">Prezzo massimo: <span id="priceValue">100000</span> €</label>
+                  <input id="priceInput" type="range" class="form-range" min="0" max="100000" step="1" value="100000" />
+                </div>
+                <div class="col-12 col-md-2 d-grid">
+                  <button id="resetBtn" class="btn btn-yellow">Reset</button>
+                </div>
+              </div>
+            </div>
 
-          <label class="field">
-            <span>Tipo annuncio</span>
-            <select id="typeFilter">
-              <option value="all">Vendo + Cerco</option>
-              <option value="sell">Vendo</option>
-              <option value="search">Cerco</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>Prezzo minimo (€)</span>
-            <input id="minPrice" type="number" min="0" step="0.01" placeholder="0" />
-          </label>
-
-          <label class="field">
-            <span>Prezzo massimo (€)</span>
-            <input id="maxPrice" type="number" min="0" step="0.01" placeholder="50000" />
-          </label>
-
-          <label class="field">
-            <span>Ordina per</span>
-            <select id="sortBy">
-              <option value="name-asc">Nome A-Z</option>
-              <option value="price-asc">Prezzo crescente</option>
-              <option value="price-desc">Prezzo decrescente</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="actions-row">
-          <button id="resetFilters" class="btn btn-secondary">Reset filtri</button>
-          <div id="resultsSummary" class="results-summary"></div>
+            <div id="cardsWrapper" class="row g-3"></div>
+          </div>
         </div>
       </section>
-
-      <section class="stats-row" aria-label="Riepilogo annunci">
-        <article class="panel stat-card">
-          <span>Totali</span>
-          <strong id="statTotal">0</strong>
-        </article>
-        <article class="panel stat-card">
-          <span>Vendo</span>
-          <strong id="statSell">0</strong>
-        </article>
-        <article class="panel stat-card">
-          <span>Cerco</span>
-          <strong id="statSearch">0</strong>
-        </article>
-      </section>
-
-      <section class="listings-head">
-        <h2>Annunci disponibili</h2>
-      </section>
-
-      <section id="cardsContainer" class="cards-grid" aria-live="polite"></section>
-      <p id="emptyState" class="empty-state hidden">
-        Nessun annuncio trovato con i filtri selezionati.
-      </p>
     </main>
 
-    <script src="annunci-data.js"></script>
-    <script src="annunci.js"></script>
+    <footer class="py-4 bg-black text-center text-white">
+      <small>Presto.it - Progetto didattico</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./annunci.js"></script>
   </body>
 </html>
