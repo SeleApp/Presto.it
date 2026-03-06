@@ -2,6 +2,7 @@ const navbar = document.querySelector("#navbar");
 const teamCircle = document.querySelector("#teamCircle");
 const circleOpener = document.querySelector("#circleOpener");
 const openerIcon = document.querySelector("#openerIcon");
+const flipCard = document.querySelector("#flipCard");
 const teamCardFront = document.querySelector("#teamCardFront");
 const teamCardName = document.querySelector("#teamCardName");
 const teamCardRole = document.querySelector("#teamCardRole");
@@ -36,6 +37,7 @@ const teachers = [
 
 let isOpen = false;
 let memberNodes = [];
+let flipTimeout;
 
 window.addEventListener("scroll", () => {
   const scrolled = window.scrollY;
@@ -71,6 +73,7 @@ function createMemberNodes() {
     node.addEventListener("click", () => {
       setActiveMember(index);
       updateCard(teacher);
+      playFlipAnimation();
 
       if (!isOpen) {
         isOpen = true;
@@ -82,6 +85,21 @@ function createMemberNodes() {
     teamCircle.appendChild(node);
     memberNodes.push(node);
   });
+}
+
+function playFlipAnimation() {
+  if (!flipCard) {
+    return;
+  }
+
+  flipCard.classList.remove("is-flipped");
+  void flipCard.offsetWidth;
+  flipCard.classList.add("is-flipped");
+
+  clearTimeout(flipTimeout);
+  flipTimeout = setTimeout(() => {
+    flipCard.classList.remove("is-flipped");
+  }, 850);
 }
 
 function positionMemberNodes() {
