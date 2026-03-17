@@ -37,6 +37,13 @@ fetch("./annunci.json")
   });
 
 function setPriceRange(array) {
+  if (array.length === 0) {
+    priceInput.max = "0";
+    priceInput.value = "0";
+    priceValue.textContent = "0";
+    return;
+  }
+
   const maxPrice = Math.ceil(Math.max(...array.map((el) => Number(el.price))));
   priceInput.max = String(maxPrice);
   priceInput.value = String(maxPrice);
@@ -45,25 +52,7 @@ function setPriceRange(array) {
 
 function getSelectedCategory() {
   const checkedButton = Array.from(radioButtons).find((button) => button.checked);
-  return checkedButton ? checkedButton.id : "all";
-}
-
-function updatePriceRangeByCategory() {
-  const selectedCategory = getSelectedCategory();
-  const filteredByCategory = selectedCategory === "all"
-    ? data
-    : data.filter((el) => el.category === selectedCategory);
-
-  if (filteredByCategory.length === 0) {
-    return;
-  }
-
-  const maxPrice = Math.ceil(Math.max(...filteredByCategory.map((el) => Number(el.price))));
-  const currentValue = Number(priceInput.value);
-
-  priceInput.max = String(maxPrice);
-  priceInput.value = String(Math.min(currentValue, maxPrice));
-  priceValue.textContent = priceInput.value;
+  return checkedButton ? checkedButton.value : "all";
 }
 
 function createCategoryFilters(array) {
@@ -72,14 +61,14 @@ function createCategoryFilters(array) {
   categoryWrapper.innerHTML = "";
 
   categories.forEach((category, index) => {
-    const id = category;
+    const id = `category-${index}`;
     const label = category === "all" ? "Tutte le categorie" : category;
 
     const wrapper = document.createElement("div");
     wrapper.classList.add("form-check", "mb-2");
 
     wrapper.innerHTML = `
-      <input class="form-check-input" type="radio" name="category" id="${id}" ${index === 0 ? "checked" : ""}>
+      <input class="form-check-input" type="radio" name="category" id="${id}" value="${category}" ${index === 0 ? "checked" : ""}>
       <label class="form-check-label" for="${id}">${label}</label>
     `;
 
@@ -162,7 +151,7 @@ function globalFilter() {
 function bindEvents() {
   radioButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      updatePriceRangeByCategory();
+      setPriceRange(filterByCategory(data));
       globalFilter();
     });
   });
@@ -177,7 +166,7 @@ function bindEvents() {
   });
 
   resetBtn.addEventListener("click", () => {
-    const allButton = document.querySelector("#all");
+    const allButton = document.querySelector("input[name='category'][value='all']");
     if (allButton) {
       allButton.checked = true;
     }
