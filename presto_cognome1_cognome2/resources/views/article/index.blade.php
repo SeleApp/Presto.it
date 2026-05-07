@@ -3,28 +3,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Tutti gli annunci - {{ config('app.name', 'Laravel') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-light">
     <x-navbar />
 
     <div class="container py-4 py-lg-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3 mb-0">Ultimi annunci</h1>
-            <a href="{{ route('article.index') }}" class="btn btn-outline-secondary">Vedi tutti</a>
-        </div>
+        <h1 class="h3 mb-4">Tutti gli annunci</h1>
 
-        <div class="row g-4">
+        <div class="row g-4 mb-4">
             @forelse ($articles as $article)
                 <div class="col-md-6 col-lg-4">
                     <x-card :article="$article" />
                 </div>
             @empty
                 <div class="col-12">
-                    <div class="alert alert-info mb-0">Nessun annuncio disponibile.</div>
+                    <div class="alert alert-info mb-0">Non ci sono annunci disponibili al momento.</div>
                 </div>
             @endforelse
+        </div>
+
+        <div>
+            {{ $articles->links() }}
         </div>
     </div>
 </body>
